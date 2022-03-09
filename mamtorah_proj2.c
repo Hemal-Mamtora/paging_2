@@ -6,7 +6,7 @@
 * Compile and run instructions (Cyberrange) (ensure it is in .c file):
 * 
 * 1. Goto Appropriate file location: of mamtorah_exam1.c
-* 2. Keep pages.txt file (file with stream of memory pages to be considered) in 
+* 2. Keep mamtorah_proj2_input.txt file (file with stream of memory pages to be considered) in 
 *    same directory as the mamtorah_exam1.c 
 * 3. Compile:
 * user@box:~/Desktop/page_replacement$ gcc mamtorah_exam1.c -o mamtorah_exam1.exe
@@ -74,19 +74,17 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define SIZE 8
-#define MEMORY_SIZE 4
-#define INPUT_SIZE 24
+#define INPUT_SIZE 100
 
 int pageFrameSize;
-int memory[SIZE];
+int *memory;
 
-// SIZE + 1 for storing pagefault
+// pageFrameSize + 1 for storing pagefault
 // INPUT_SIZE + 1 for storing initial state and INPUT_SIZE number of columns.s 
-int res[SIZE + 1][INPUT_SIZE + 1]; 
+// int res[pageFrameSize + 1][INPUT_SIZE + 1]; 
 
 int pageMemoryIndex(int page) {
-  for (int i = 0; i < MEMORY_SIZE; i++)
+  for (int i = 0; i < pageFrameSize; i++)
     if (page == memory[i])
       return i;
   return -1;
@@ -94,7 +92,7 @@ int pageMemoryIndex(int page) {
 
 void insert(int page) {
   int temp, current = page;
-  for (int i = 0; i < SIZE; i++) {
+  for (int i = 0; i < pageFrameSize; i++) {
     temp = memory[i];
     memory[i] = current;
     current = temp;
@@ -102,55 +100,55 @@ void insert(int page) {
 }
 
 void initializeMemory() {
-  for (int i = 0; i < SIZE; i++)
+  for (int i = 0; i < pageFrameSize; i++)
     insert(-1);
 }
 
-// TODO: modify
-void display(int (*res)[INPUT_SIZE + 1], int * input) {
-  // Printing the table
-  printf("Input pages:      ");
-  for (int j = 0; j < INPUT_SIZE + 1; j++) {
-      if (j == 0) {
-          printf("    ");
-      }
-      else{
-          printf("%2d  ", input[j-1]);
-      }
-    }
-    printf("\n");
+// // TODO: modify
+// void display(int (*res)[INPUT_SIZE + 1], int * input) {
+//   // Printing the table
+//   printf("Input pages:      ");
+//   for (int j = 0; j < INPUT_SIZE + 1; j++) {
+//       if (j == 0) {
+//           printf("    ");
+//       }
+//       else{
+//           printf("%2d  ", input[j-1]);
+//       }
+//     }
+//     printf("\n");
 
-  for (int i = 0; i < 9; i++) {
-    if (i < 4){
-      printf("Memory %d:         ", (i+1));
-    }
-    else if (i < 8){
-      printf("Recently out %d:   ", (i-3));
-    }
-    else{
-      printf("Pagefault:        ");
-    }
-    for (int j = 0; j < INPUT_SIZE + 1; j++) {
-      printf("%2d  ", res[i][j]);
-    }
-    printf("\n");
-  }
-}
+//   for (int i = 0; i < 9; i++) {
+//     if (i < 4){
+//       printf("Memory %d:         ", (i+1));
+//     }
+//     else if (i < 8){
+//       printf("Recently out %d:   ", (i-3));
+//     }
+//     else{
+//       printf("Pagefault:        ");
+//     }
+//     for (int j = 0; j < INPUT_SIZE + 1; j++) {
+//       printf("%2d  ", res[i][j]);
+//     }
+//     printf("\n");
+//   }
+// }
 
-void fillMatrix(int pageFault, int index) {
-  for (int i = 0; i < SIZE; i++) {
-    res[i][index] = memory[i];
-  }
-  res[8][index] = pageFault;
-}
+// void fillMatrix(int pageFault, int index) {
+//   for (int i = 0; i < pageFrameSize; i++) {
+//     res[i][index] = memory[i];
+//   }
+//   res[8][index] = pageFault;
+// }
 
 void FIFO() {
   int page;
   int pageFault = 0;
-  fillMatrix(0, 0);
+  // fillMatrix(0, 0);
 
   // Read File
-  FILE *fp = fopen("pages.txt", "r");
+  FILE *fp = fopen("mamtorah_proj2_input.txt", "r");
 
   if (fp == NULL) {
     perror("Unable to open the file");
@@ -174,20 +172,20 @@ void FIFO() {
     pageFault = pageMemoryIndex(page) == -1;
     if (pageFault)
       insert(page);
-    fillMatrix(pageFault, i + 1);
+    // fillMatrix(pageFault, i + 1);
   }
 
-  display(res, input);
+  // display(res, input);
 }
 
 typedef struct map {
   int key, val;
 } map;
 
-map age[MEMORY_SIZE];
+map *age;
 
 int initializeAge() {
-  for (int i = 0; i < MEMORY_SIZE; i++) {
+  for (int i = 0; i < pageFrameSize; i++) {
     age[i] = (map) {-1, -1};
   }
 }
@@ -196,7 +194,7 @@ int findLRU() {
   int index = 0;
   int maximum = age[index].val;
   // first fill unfilled memory
-  for (int i = 0; i < MEMORY_SIZE; i++) {
+  for (int i = 0; i < pageFrameSize; i++) {
     // printf("(%d %d %d)", i, age[i].key, age[i].val);
     if (age[i].key == -1) {
       // printf("here");
@@ -205,7 +203,7 @@ int findLRU() {
   }
 
   // give the least recently used index, (most aged)
-  for (int i = 0; i < MEMORY_SIZE; i++) {
+  for (int i = 0; i < pageFrameSize; i++) {
     if (age[i].val > maximum) {
       maximum = age[i].val;
       index = i;
@@ -223,7 +221,7 @@ int insertLRU(int page, int index) {
 
   // maintaining the recently exited pages out of memory as directed in the
   // question
-  for (int i = MEMORY_SIZE; i < SIZE; i++) {
+  for (int i = pageFrameSize; i < pageFrameSize; i++) {
     temp = memory[i];
     memory[i] = current;
     current = temp;
@@ -236,7 +234,7 @@ int insertLRU(int page, int index) {
 }
 
 int incrementAge() {
-  for (int i = 0; i < MEMORY_SIZE; i++) {
+  for (int i = 0; i < pageFrameSize; i++) {
     if (age[i].key != -1) { // if there is actual page in memory
       age[i].val++;         // increment the age
     }
@@ -245,7 +243,7 @@ int incrementAge() {
 }
 
 int resetAge(int page) {
-  for (int i = 0; i < MEMORY_SIZE; i++) {
+  for (int i = 0; i < pageFrameSize; i++) {
     if (age[i].key == page) {
       age[i].val = 0;
       return 0;
@@ -262,10 +260,10 @@ void LRU() {
   int pageFault = 0;
   int index;
 
-  fillMatrix(0, 0);
+  // fillMatrix(0, 0);
 
   // Read File
-  FILE *fp = fopen("pages.txt", "r");
+  FILE *fp = fopen("mamtorah_proj2_input.txt", "r");
 
   if (fp == NULL) {
     perror("Unable to open the file");
@@ -293,17 +291,17 @@ void LRU() {
       resetAge(page);
     }
     incrementAge();
-    fillMatrix(pageFault, i + 1);
+    // fillMatrix(pageFault, i + 1);
   }
 
-  display(res, input);
+  // display(res, input);
 }
 
 typedef struct frame {
   int page, secondChanceBit;
 } frame;
 
-frame memoryFrames[MEMORY_SIZE];
+frame *memoryFrames;
 
 // int insertSecondChance(int page) {
 
@@ -322,29 +320,29 @@ frame memoryFrames[MEMORY_SIZE];
 
 //       // maintaining the recently exited pages out of memory as directed in the
 //       // question
-//       for (int i = MEMORY_SIZE; i < SIZE; i++) {
+//       for (int i = pageFrameSize; i < pageFrameSize; i++) {
 //         temp = memory[i];
 //         memory[i] = current;
 //         current = temp;
 //       }
 //       // roundRobinPointer is currently at the page which was just replaced.
 //       // it should be incremented before exiting
-//       roundRobinPointer = (roundRobinPointer + 1) % MEMORY_SIZE;
+//       roundRobinPointer = (roundRobinPointer + 1) % pageFrameSize;
 //       return 0;
 //     }
-//     roundRobinPointer = (roundRobinPointer + 1) % MEMORY_SIZE;
+//     roundRobinPointer = (roundRobinPointer + 1) % pageFrameSize;
 //   }
 // }
 
 void initializeSecondChance() {
-  for (int i = 0; i < SIZE; i++) {
+  for (int i = 0; i < pageFrameSize; i++) {
     memoryFrames[i] = (frame) {-1, 0};
   }
 }
 
 int insertSecondChance(int page) {
 
-  for (int i = 0; i < MEMORY_SIZE; i++) {
+  for (int i = 0; i < pageFrameSize; i++) {
       if (memoryFrames[i].page == page) {
         memoryFrames[i].secondChanceBit = 1;
         return 0; // no pageFault
@@ -354,7 +352,7 @@ int insertSecondChance(int page) {
   int outIndex = -1;
 
   // lets see if we find empty page
-  for (int i = 0; i < MEMORY_SIZE; i++) {
+  for (int i = 0; i < pageFrameSize; i++) {
     if (memoryFrames[i].page == -1) {
       outIndex = i;
       break;
@@ -373,17 +371,17 @@ int insertSecondChance(int page) {
   // check second chance bit too.
 
   // but first lets move the last 4 exited pages
-  for (int i = SIZE - 1; i > MEMORY_SIZE; i--) {
+  for (int i = pageFrameSize - 1; i > pageFrameSize; i--) {
     memoryFrames[i] = memoryFrames[i-1];
   }
 
-  for (int i = MEMORY_SIZE - 1; i >= 0; i--) {
+  for (int i = pageFrameSize - 1; i >= 0; i--) {
     if (memoryFrames[i].secondChanceBit == 1) {
       memoryFrames[i].secondChanceBit = 0; // 2nd chance exhausted
     }
     else{
       // currently at an index to be moved out.
-      memoryFrames[MEMORY_SIZE] = memoryFrames[i]; // moved out
+      memoryFrames[pageFrameSize] = memoryFrames[i]; // moved out
       outIndex = i;
       break;
     }
@@ -392,8 +390,8 @@ int insertSecondChance(int page) {
   if (outIndex == -1) {
     // this means, all pageFrames got a second chance.
     // hence, outIndex should be the first page in. (since FIFO) 
-    // first page in, would be at index MEMORY_SIZE - 1
-    outIndex = MEMORY_SIZE - 1;
+    // first page in, would be at index pageFrameSize - 1
+    outIndex = pageFrameSize - 1;
   }
 
   for (int i = outIndex; i > 0; i--) {
@@ -411,10 +409,10 @@ void secondChance() {
   int pageFault = 0;
   int index = -1;
 
-  fillMatrix(0, 0);
+  // fillMatrix(0, 0);
 
   // Read File
-  FILE *fp = fopen("pages.txt", "r");
+  FILE *fp = fopen("mamtorah_proj2_input.txt", "r");
 
   if (fp == NULL) {
     perror("Unable to open the file");
@@ -436,19 +434,19 @@ void secondChance() {
     page = input[i];
     pageFault = insertSecondChance(page);
 
-    for (int i = 0; i < SIZE; i++){
+    for (int i = 0; i < pageFrameSize; i++){
       memory[i] = memoryFrames[i].page;
     }
 
-    fillMatrix(pageFault, i + 1);
+    // fillMatrix(pageFault, i + 1);
   }
 
-  display(res, input);
+  // display(res, input);
 }
 
 int choosePageFrameSize() {
     int option;
-    print("Choose page frame size:\n");
+    printf("Choose page frame size:\n");
     printf("Press 1 for 4-page frames\n");
     printf("Press 2 for 8-page frames\n");
     printf("Your choice: ");
@@ -464,7 +462,6 @@ int choosePageFrameSize() {
 
 int main() {
   int option;
-  initializeMemory();
   printf("Choose a page replacement algorithm:\n");
   printf("Press 1 for FIFO\n");
   printf("Press 2 for LRU\n");
@@ -474,8 +471,12 @@ int main() {
 
   pageFrameSize = choosePageFrameSize();
 
+
   if (pageFrameSize == -1)
     return 0;
+
+  memory = (int*)malloc(pageFrameSize * sizeof(int));
+  initializeMemory();
 
   switch (option) {
   case 1:
@@ -484,15 +485,21 @@ int main() {
     break;
   case 2:
     printf("Running LRU:\n");
+    age = (map*)malloc(pageFrameSize * sizeof(map));
     LRU();
+    free(age);
     break;
   case 3:
     printf("Running Second Chance:\n");
+    memoryFrames = (frame*)malloc(pageFrameSize * sizeof(frame));
     secondChance();
+    free(memoryFrames);
     break;
   default:
     printf("Please choose a valid option!\n");
     break;
   }
+
+  free(memory);
   return 0;
 }
