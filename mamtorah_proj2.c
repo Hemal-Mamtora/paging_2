@@ -275,16 +275,16 @@ void LRU() {
   int input[INPUT_SIZE];
   int x;
   int i = 0;
-  while (fscanf(fp, "%d", &x) == 1) {
-    input[i] = x;
-    i++;
-  }
-  fclose(fp);
+  while (fscanf(fp, "%d", &page) == 1) {
+    // input[i] = x;
+    // i++;
+  // }
+  
 
-  int n = sizeof(input) / sizeof(input[0]);
+  // int n = sizeof(input) / sizeof(input[0]);
 
-  for (int i = 0; i < n; i++) {
-    page = input[i];
+  // for (int i = 0; i < n; i++) {
+    // page = input[i];
     pageFault = pageMemoryIndex(page) == -1;
     if (pageFault) {
       index = findLRU();
@@ -293,8 +293,10 @@ void LRU() {
       resetAge(page);
     }
     incrementAge();
+    printf("page: %d, pagefault: %d\n", page, pageFault);
     // fillMatrix(pageFault, i + 1);
   }
+  fclose(fp);
 
   // display(res, input);
 }
@@ -421,27 +423,28 @@ void secondChance() {
     exit(1);
   }
 
-  int input[INPUT_SIZE];
-  int x;
-  int i = 0;
-  while (fscanf(fp, "%d", &x) == 1) {
-    input[i] = x;
-    i++;
-  }
-  fclose(fp);
+  // int input[INPUT_SIZE];
+  // int x;
+  // int i = 0;
+  while (fscanf(fp, "%d", &page) == 1) {
+    // input[i] = x;
+    // i++;
+  // }
+  
 
-  int n = sizeof(input) / sizeof(input[0]);
+  // int n = sizeof(input) / sizeof(input[0]);
 
-  for (int i = 0; i < n; i++) {
-    page = input[i];
+  // for (int i = 0; i < n; i++) {
+    //page = input[i];
     pageFault = insertSecondChance(page);
 
     for (int i = 0; i < pageFrameSize; i++){
       memory[i] = memoryFrames[i].page;
     }
-
+    printf("page: %d, pagefault: %d\n", page, pageFault);
     // fillMatrix(pageFault, i + 1);
   }
+  fclose(fp);
 
   // display(res, input);
 }
