@@ -155,25 +155,27 @@ void FIFO() {
     exit(1);
   }
 
-  int input[INPUT_SIZE];
-  int x;
-  int i = 0;
-  while (fscanf(fp, "%d", &x) == 1) {
-    input[i] = x;
-    i++;
-  }
-  fclose(fp);
+  // int input[INPUT_SIZE];
+  // int x;
+  // int i = 0;
+  while (fscanf(fp, "%d", &page) == 1) {
+    // input[i] = x;
+    // i++;
+  // }
+  
 
-  int n = sizeof(input) / sizeof(input[0]);
+  // int n = sizeof(input) / sizeof(input[0]);
 
-  for (int i = 0; i < n; i++) {
-    page = input[i];
+  //for (int i = 0; i < n; i++) {
+    // page = input[i];
     // printf("\nPAGE: %d\n", page);
     pageFault = pageMemoryIndex(page) == -1;
+    printf("page: %d, pagefault: %d\n", page, pageFault);
     if (pageFault)
       insert(page);
     // fillMatrix(pageFault, i + 1);
   }
+  fclose(fp);
 
   // display(res, input);
 }
