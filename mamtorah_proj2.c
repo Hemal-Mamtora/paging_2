@@ -73,15 +73,14 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <sys/time.h>
 
 #define INPUT_SIZE 100
 
 int pageFrameSize;
 int *memory;
-
-// pageFrameSize + 1 for storing pagefault
-// INPUT_SIZE + 1 for storing initial state and INPUT_SIZE number of columns.s 
-// int res[pageFrameSize + 1][INPUT_SIZE + 1]; 
+struct timeval tv;
+long long timestamp;
 
 int pageMemoryIndex(int page) {
   for (int i = 0; i < pageFrameSize; i++)
@@ -104,48 +103,10 @@ void initializeMemory() {
     insert(-1);
 }
 
-// // TODO: modify
-// void display(int (*res)[INPUT_SIZE + 1], int * input) {
-//   // Printing the table
-//   printf("Input pages:      ");
-//   for (int j = 0; j < INPUT_SIZE + 1; j++) {
-//       if (j == 0) {
-//           printf("    ");
-//       }
-//       else{
-//           printf("%2d  ", input[j-1]);
-//       }
-//     }
-//     printf("\n");
-
-//   for (int i = 0; i < 9; i++) {
-//     if (i < 4){
-//       printf("Memory %d:         ", (i+1));
-//     }
-//     else if (i < 8){
-//       printf("Recently out %d:   ", (i-3));
-//     }
-//     else{
-//       printf("Pagefault:        ");
-//     }
-//     for (int j = 0; j < INPUT_SIZE + 1; j++) {
-//       printf("%2d  ", res[i][j]);
-//     }
-//     printf("\n");
-//   }
-// }
-
-// void fillMatrix(int pageFault, int index) {
-//   for (int i = 0; i < pageFrameSize; i++) {
-//     res[i][index] = memory[i];
-//   }
-//   res[8][index] = pageFault;
-// }
-
 void FIFO() {
   int page;
   int pageFault = 0;
-  // fillMatrix(0, 0);
+  int pageFaultCount = 0;
 
   // Read File
   FILE *fp = fopen("mamtorah_proj2_input.txt", "r");
@@ -155,29 +116,19 @@ void FIFO() {
     exit(1);
   }
 
-  // int input[INPUT_SIZE];
-  // int x;
-  // int i = 0;
   while (fscanf(fp, "%d", &page) == 1) {
-    // input[i] = x;
-    // i++;
-  // }
-  
-
-  // int n = sizeof(input) / sizeof(input[0]);
-
-  //for (int i = 0; i < n; i++) {
-    // page = input[i];
-    // printf("\nPAGE: %d\n", page);
+    gettimeofday(&tv,NULL);
+    // timestamp in microseconds
+    // https://stackoverflow.com/questions/5833094/get-a-timestamp-in-c-in-microseconds
+    timestamp = (long long)tv.tv_sec*1000000+tv.tv_usec;
     pageFault = pageMemoryIndex(page) == -1;
-    printf("page: %d, pagefault: %d\n", page, pageFault);
+    printf("timestamp: %lld, page: %2d, pagefault: %d\n", timestamp, page, pageFault);
     if (pageFault)
       insert(page);
-    // fillMatrix(pageFault, i + 1);
+    pageFaultCount += (pageFault == 1);
   }
   fclose(fp);
-
-  // display(res, input);
+  printf("total pagefaults: %d\n", pageFaultCount);
 }
 
 typedef struct map {
@@ -261,8 +212,7 @@ void LRU() {
   int page;
   int pageFault = 0;
   int index;
-
-  // fillMatrix(0, 0);
+  int pageFaultCount = 0;
 
   // Read File
   FILE *fp = fopen("mamtorah_proj2_input.txt", "r");
@@ -275,16 +225,11 @@ void LRU() {
   int input[INPUT_SIZE];
   int x;
   int i = 0;
-  while (fscanf(fp, "%d", &page) == 1) {
-    // input[i] = x;
-    // i++;
-  // }
-  
-
-  // int n = sizeof(input) / sizeof(input[0]);
-
-  // for (int i = 0; i < n; i++) {
-    // page = input[i];
+  while (fscanf(fp, "%d", &page) == 1) {  
+    gettimeofday(&tv,NULL);
+    // timestamp in microseconds
+    // https://stackoverflow.com/questions/5833094/get-a-timestamp-in-c-in-microseconds
+    timestamp = (long long)tv.tv_sec*1000000+tv.tv_usec;
     pageFault = pageMemoryIndex(page) == -1;
     if (pageFault) {
       index = findLRU();
@@ -293,12 +238,11 @@ void LRU() {
       resetAge(page);
     }
     incrementAge();
-    printf("page: %d, pagefault: %d\n", page, pageFault);
-    // fillMatrix(pageFault, i + 1);
+    printf("timestamp: %lld, page: %2d, pagefault: %d\n", timestamp, page, pageFault);
+    pageFaultCount += (pageFault == 1);
   }
   fclose(fp);
-
-  // display(res, input);
+  printf("total pagefaults: %d\n", pageFaultCount);
 }
 
 typedef struct frame {
@@ -307,37 +251,6 @@ typedef struct frame {
 
 frame *memoryFrames;
 
-// int insertSecondChance(int page) {
-
-
-//   int temp, current;
-
-//   while (1) {
-//     if (secondChanceBit[roundRobinPointer] == 1) {
-//       secondChanceBit[roundRobinPointer] = 0;
-//     } else {
-//       // secondChanceBit at current position is 0
-//       // hence this page is to be replaced
-//       temp = memory[roundRobinPointer];
-//       memory[roundRobinPointer] = page;
-//       current = temp;
-
-//       // maintaining the recently exited pages out of memory as directed in the
-//       // question
-//       for (int i = pageFrameSize; i < pageFrameSize; i++) {
-//         temp = memory[i];
-//         memory[i] = current;
-//         current = temp;
-//       }
-//       // roundRobinPointer is currently at the page which was just replaced.
-//       // it should be incremented before exiting
-//       roundRobinPointer = (roundRobinPointer + 1) % pageFrameSize;
-//       return 0;
-//     }
-//     roundRobinPointer = (roundRobinPointer + 1) % pageFrameSize;
-//   }
-// }
-
 void initializeSecondChance() {
   for (int i = 0; i < pageFrameSize; i++) {
     memoryFrames[i] = (frame) {-1, 0};
@@ -345,7 +258,6 @@ void initializeSecondChance() {
 }
 
 int insertSecondChance(int page) {
-
   for (int i = 0; i < pageFrameSize; i++) {
       if (memoryFrames[i].page == page) {
         memoryFrames[i].secondChanceBit = 1;
@@ -412,8 +324,7 @@ void secondChance() {
   int page;
   int pageFault = 0;
   int index = -1;
-
-  // fillMatrix(0, 0);
+  int pageFaultCount = 0;
 
   // Read File
   FILE *fp = fopen("mamtorah_proj2_input.txt", "r");
@@ -427,26 +338,19 @@ void secondChance() {
   // int x;
   // int i = 0;
   while (fscanf(fp, "%d", &page) == 1) {
-    // input[i] = x;
-    // i++;
-  // }
-  
-
-  // int n = sizeof(input) / sizeof(input[0]);
-
-  // for (int i = 0; i < n; i++) {
-    //page = input[i];
+    gettimeofday(&tv,NULL);
+    // timestamp in microseconds
+    // https://stackoverflow.com/questions/5833094/get-a-timestamp-in-c-in-microseconds
+    timestamp = (long long)tv.tv_sec*1000000+tv.tv_usec;
     pageFault = insertSecondChance(page);
-
     for (int i = 0; i < pageFrameSize; i++){
       memory[i] = memoryFrames[i].page;
     }
-    printf("page: %d, pagefault: %d\n", page, pageFault);
-    // fillMatrix(pageFault, i + 1);
+    printf("timestamp: %lld, page: %2d, pagefault: %d\n", timestamp, page, pageFault);
+    pageFaultCount += (pageFault == 1);
   }
   fclose(fp);
-
-  // display(res, input);
+  printf("total pagefaults: %d\n", pageFaultCount);
 }
 
 int choosePageFrameSize() {
