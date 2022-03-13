@@ -1,0 +1,339 @@
+Choose a page replacement algorithm:
+Press 1 for FIFO
+Press 2 for LRU
+Press 3 for Second Chance
+Your choice: 
+Option chosen: 1
+Choose page frame size:
+Press 1 for 4-page frames
+Press 2 for 8-page frames
+Your choice: 
+option chosen: 2
+Running FIFO:
+timestamp: 1647134076465539, page:  9, pagefault: 1
+timestamp: 1647134076465543, page: 15, pagefault: 1
+timestamp: 1647134076465544, page:  6, pagefault: 1
+timestamp: 1647134076465545, page:  8, pagefault: 1
+timestamp: 1647134076465546, page:  3, pagefault: 1
+timestamp: 1647134076465548, page: 15, pagefault: 0
+timestamp: 1647134076465549, page: 11, pagefault: 1
+timestamp: 1647134076465550, page: 12, pagefault: 1
+timestamp: 1647134076465551, page:  5, pagefault: 1
+timestamp: 1647134076465552, page:  7, pagefault: 1
+timestamp: 1647134076465553, page:  7, pagefault: 0
+timestamp: 1647134076465554, page:  8, pagefault: 0
+timestamp: 1647134076465555, page:  6, pagefault: 0
+timestamp: 1647134076465556, page: 15, pagefault: 0
+timestamp: 1647134076465557, page: 13, pagefault: 1
+timestamp: 1647134076465558, page: 12, pagefault: 0
+timestamp: 1647134076465559, page: 11, pagefault: 0
+timestamp: 1647134076465560, page: 10, pagefault: 1
+timestamp: 1647134076465561, page: 11, pagefault: 0
+timestamp: 1647134076465562, page: 14, pagefault: 1
+timestamp: 1647134076465563, page:  1, pagefault: 1
+timestamp: 1647134076465564, page:  2, pagefault: 1
+timestamp: 1647134076465565, page:  5, pagefault: 0
+timestamp: 1647134076465566, page:  2, pagefault: 0
+timestamp: 1647134076465567, page:  4, pagefault: 1
+timestamp: 1647134076465568, page: 14, pagefault: 0
+timestamp: 1647134076465569, page:  5, pagefault: 0
+timestamp: 1647134076465570, page:  3, pagefault: 1
+timestamp: 1647134076465571, page: 15, pagefault: 1
+timestamp: 1647134076465572, page:  8, pagefault: 1
+timestamp: 1647134076465573, page: 15, pagefault: 0
+timestamp: 1647134076465574, page: 12, pagefault: 1
+timestamp: 1647134076465575, page: 15, pagefault: 0
+timestamp: 1647134076465576, page:  0, pagefault: 1
+timestamp: 1647134076465578, page:  3, pagefault: 0
+timestamp: 1647134076465579, page:  0, pagefault: 0
+timestamp: 1647134076465580, page: 10, pagefault: 1
+timestamp: 1647134076465581, page: 15, pagefault: 0
+timestamp: 1647134076465582, page:  3, pagefault: 0
+timestamp: 1647134076465583, page:  2, pagefault: 0
+timestamp: 1647134076465584, page:  8, pagefault: 0
+timestamp: 1647134076465584, page:  2, pagefault: 0
+timestamp: 1647134076465585, page: 11, pagefault: 1
+timestamp: 1647134076465586, page:  1, pagefault: 1
+timestamp: 1647134076465588, page:  5, pagefault: 1
+timestamp: 1647134076465588, page:  1, pagefault: 0
+timestamp: 1647134076465590, page: 15, pagefault: 0
+timestamp: 1647134076465590, page:  8, pagefault: 0
+timestamp: 1647134076465591, page:  5, pagefault: 0
+timestamp: 1647134076465592, page:  7, pagefault: 1
+timestamp: 1647134076465593, page:  5, pagefault: 0
+timestamp: 1647134076465594, page:  7, pagefault: 0
+timestamp: 1647134076465595, page:  3, pagefault: 1
+timestamp: 1647134076465596, page:  4, pagefault: 1
+timestamp: 1647134076465597, page: 15, pagefault: 1
+timestamp: 1647134076465598, page: 15, pagefault: 0
+timestamp: 1647134076465599, page:  7, pagefault: 0
+timestamp: 1647134076465600, page:  6, pagefault: 1
+timestamp: 1647134076465601, page: 11, pagefault: 0
+timestamp: 1647134076465602, page:  8, pagefault: 1
+timestamp: 1647134076465603, page:  1, pagefault: 0
+timestamp: 1647134076465604, page:  9, pagefault: 1
+timestamp: 1647134076465605, page: 10, pagefault: 1
+timestamp: 1647134076465606, page:  1, pagefault: 1
+timestamp: 1647134076465608, page:  2, pagefault: 1
+timestamp: 1647134076465609, page:  9, pagefault: 0
+timestamp: 1647134076465610, page:  2, pagefault: 0
+timestamp: 1647134076465611, page:  4, pagefault: 0
+timestamp: 1647134076465612, page: 14, pagefault: 1
+timestamp: 1647134076465613, page:  0, pagefault: 1
+timestamp: 1647134076465614, page: 13, pagefault: 1
+timestamp: 1647134076465615, page:  6, pagefault: 1
+timestamp: 1647134076465616, page:  4, pagefault: 1
+timestamp: 1647134076465617, page: 11, pagefault: 1
+timestamp: 1647134076465618, page: 14, pagefault: 0
+timestamp: 1647134076465674, page:  2, pagefault: 0
+timestamp: 1647134076465675, page: 14, pagefault: 0
+timestamp: 1647134076465676, page: 12, pagefault: 1
+timestamp: 1647134076465677, page: 13, pagefault: 0
+timestamp: 1647134076465678, page:  1, pagefault: 1
+timestamp: 1647134076465679, page: 10, pagefault: 1
+timestamp: 1647134076465680, page: 11, pagefault: 0
+timestamp: 1647134076465681, page:  1, pagefault: 0
+timestamp: 1647134076465682, page: 10, pagefault: 0
+timestamp: 1647134076465683, page: 15, pagefault: 1
+timestamp: 1647134076465684, page:  5, pagefault: 1
+timestamp: 1647134076465685, page:  0, pagefault: 1
+timestamp: 1647134076465686, page:  1, pagefault: 0
+timestamp: 1647134076465687, page:  2, pagefault: 1
+timestamp: 1647134076465688, page:  2, pagefault: 0
+timestamp: 1647134076465689, page: 10, pagefault: 0
+timestamp: 1647134076465690, page: 13, pagefault: 1
+timestamp: 1647134076465691, page:  4, pagefault: 1
+timestamp: 1647134076465692, page:  7, pagefault: 1
+timestamp: 1647134076465693, page: 12, pagefault: 1
+timestamp: 1647134076465694, page: 12, pagefault: 0
+timestamp: 1647134076465695, page: 12, pagefault: 0
+timestamp: 1647134076465696, page: 12, pagefault: 0
+timestamp: 1647134076465697, page:  2, pagefault: 0
+timestamp: 1647134076465700, page:  6, pagefault: 1
+total pagefaults: 52
+Choose a page replacement algorithm:
+Press 1 for FIFO
+Press 2 for LRU
+Press 3 for Second Chance
+Your choice: 
+Option chosen: 2
+Choose page frame size:
+Press 1 for 4-page frames
+Press 2 for 8-page frames
+Your choice: 
+option chosen: 2
+Running LRU:
+timestamp: 1647134085714002, page:  9, pagefault: 1
+timestamp: 1647134085714006, page: 15, pagefault: 1
+timestamp: 1647134085714007, page:  6, pagefault: 1
+timestamp: 1647134085714008, page:  8, pagefault: 1
+timestamp: 1647134085714009, page:  3, pagefault: 1
+timestamp: 1647134085714010, page: 15, pagefault: 0
+timestamp: 1647134085714012, page: 11, pagefault: 1
+timestamp: 1647134085714013, page: 12, pagefault: 1
+timestamp: 1647134085714014, page:  5, pagefault: 1
+timestamp: 1647134085714015, page:  7, pagefault: 1
+timestamp: 1647134085714016, page:  7, pagefault: 0
+timestamp: 1647134085714017, page:  8, pagefault: 0
+timestamp: 1647134085714018, page:  6, pagefault: 0
+timestamp: 1647134085714019, page: 15, pagefault: 0
+timestamp: 1647134085714021, page: 13, pagefault: 1
+timestamp: 1647134085714022, page: 12, pagefault: 0
+timestamp: 1647134085714023, page: 11, pagefault: 0
+timestamp: 1647134085714024, page: 10, pagefault: 1
+timestamp: 1647134085714025, page: 11, pagefault: 0
+timestamp: 1647134085714026, page: 14, pagefault: 1
+timestamp: 1647134085714027, page:  1, pagefault: 1
+timestamp: 1647134085714028, page:  2, pagefault: 1
+timestamp: 1647134085714029, page:  5, pagefault: 1
+timestamp: 1647134085714030, page:  2, pagefault: 0
+timestamp: 1647134085714031, page:  4, pagefault: 1
+timestamp: 1647134085714032, page: 14, pagefault: 0
+timestamp: 1647134085714033, page:  5, pagefault: 0
+timestamp: 1647134085714034, page:  3, pagefault: 1
+timestamp: 1647134085714035, page: 15, pagefault: 1
+timestamp: 1647134085714036, page:  8, pagefault: 1
+timestamp: 1647134085714037, page: 15, pagefault: 0
+timestamp: 1647134085714038, page: 12, pagefault: 1
+timestamp: 1647134085714039, page: 15, pagefault: 0
+timestamp: 1647134085714040, page:  0, pagefault: 1
+timestamp: 1647134085714041, page:  3, pagefault: 0
+timestamp: 1647134085714043, page:  0, pagefault: 0
+timestamp: 1647134085714044, page: 10, pagefault: 1
+timestamp: 1647134085714045, page: 15, pagefault: 0
+timestamp: 1647134085714046, page:  3, pagefault: 0
+timestamp: 1647134085714047, page:  2, pagefault: 1
+timestamp: 1647134085714048, page:  8, pagefault: 0
+timestamp: 1647134085714049, page:  2, pagefault: 0
+timestamp: 1647134085714050, page: 11, pagefault: 1
+timestamp: 1647134085714051, page:  1, pagefault: 1
+timestamp: 1647134085714052, page:  5, pagefault: 1
+timestamp: 1647134085714053, page:  1, pagefault: 0
+timestamp: 1647134085714054, page: 15, pagefault: 0
+timestamp: 1647134085714064, page:  8, pagefault: 0
+timestamp: 1647134085714065, page:  5, pagefault: 0
+timestamp: 1647134085714066, page:  7, pagefault: 1
+timestamp: 1647134085714067, page:  5, pagefault: 0
+timestamp: 1647134085714068, page:  7, pagefault: 0
+timestamp: 1647134085714069, page:  3, pagefault: 0
+timestamp: 1647134085714070, page:  4, pagefault: 1
+timestamp: 1647134085714071, page: 15, pagefault: 0
+timestamp: 1647134085714072, page: 15, pagefault: 0
+timestamp: 1647134085714073, page:  7, pagefault: 0
+timestamp: 1647134085714074, page:  6, pagefault: 1
+timestamp: 1647134085714075, page: 11, pagefault: 1
+timestamp: 1647134085714076, page:  8, pagefault: 0
+timestamp: 1647134085714077, page:  1, pagefault: 1
+timestamp: 1647134085714078, page:  9, pagefault: 1
+timestamp: 1647134085714080, page: 10, pagefault: 1
+timestamp: 1647134085714081, page:  1, pagefault: 0
+timestamp: 1647134085714082, page:  2, pagefault: 1
+timestamp: 1647134085714083, page:  9, pagefault: 0
+timestamp: 1647134085714084, page:  2, pagefault: 0
+timestamp: 1647134085714085, page:  4, pagefault: 1
+timestamp: 1647134085714088, page: 14, pagefault: 1
+timestamp: 1647134085714090, page:  0, pagefault: 1
+timestamp: 1647134085714091, page: 13, pagefault: 1
+timestamp: 1647134085714092, page:  6, pagefault: 1
+timestamp: 1647134085714093, page:  4, pagefault: 0
+timestamp: 1647134085714094, page: 11, pagefault: 1
+timestamp: 1647134085714095, page: 14, pagefault: 0
+timestamp: 1647134085714144, page:  2, pagefault: 0
+timestamp: 1647134085714145, page: 14, pagefault: 0
+timestamp: 1647134085714146, page: 12, pagefault: 1
+timestamp: 1647134085714148, page: 13, pagefault: 0
+timestamp: 1647134085714149, page:  1, pagefault: 1
+timestamp: 1647134085714150, page: 10, pagefault: 1
+timestamp: 1647134085714151, page: 11, pagefault: 0
+timestamp: 1647134085714152, page:  1, pagefault: 0
+timestamp: 1647134085714153, page: 10, pagefault: 0
+timestamp: 1647134085714154, page: 15, pagefault: 1
+timestamp: 1647134085714155, page:  5, pagefault: 1
+timestamp: 1647134085714156, page:  0, pagefault: 1
+timestamp: 1647134085714157, page:  1, pagefault: 0
+timestamp: 1647134085714158, page:  2, pagefault: 1
+timestamp: 1647134085714159, page:  2, pagefault: 0
+timestamp: 1647134085714160, page: 10, pagefault: 0
+timestamp: 1647134085714161, page: 13, pagefault: 0
+timestamp: 1647134085714162, page:  4, pagefault: 1
+timestamp: 1647134085714163, page:  7, pagefault: 1
+timestamp: 1647134085714164, page: 12, pagefault: 1
+timestamp: 1647134085714165, page: 12, pagefault: 0
+timestamp: 1647134085714166, page: 12, pagefault: 0
+timestamp: 1647134085714167, page: 12, pagefault: 0
+timestamp: 1647134085714168, page:  2, pagefault: 0
+timestamp: 1647134085714171, page:  6, pagefault: 1
+total pagefaults: 51
+Choose a page replacement algorithm:
+Press 1 for FIFO
+Press 2 for LRU
+Press 3 for Second Chance
+Your choice: 
+Option chosen: 3
+Choose page frame size:
+Press 1 for 4-page frames
+Press 2 for 8-page frames
+Your choice: 
+option chosen: 2
+Running Second Chance:
+timestamp: 1647134089629495, page:  9, pagefault: 1
+timestamp: 1647134089629498, page: 15, pagefault: 1
+timestamp: 1647134089629500, page:  6, pagefault: 1
+timestamp: 1647134089629501, page:  8, pagefault: 1
+timestamp: 1647134089629502, page:  3, pagefault: 1
+timestamp: 1647134089629503, page: 15, pagefault: 0
+timestamp: 1647134089629504, page: 11, pagefault: 1
+timestamp: 1647134089629506, page: 12, pagefault: 1
+timestamp: 1647134089629507, page:  5, pagefault: 1
+timestamp: 1647134089629508, page:  7, pagefault: 1
+timestamp: 1647134089629509, page:  7, pagefault: 0
+timestamp: 1647134089629510, page:  8, pagefault: 0
+timestamp: 1647134089629511, page:  6, pagefault: 0
+timestamp: 1647134089629512, page: 15, pagefault: 0
+timestamp: 1647134089629513, page: 13, pagefault: 1
+timestamp: 1647134089629515, page: 12, pagefault: 0
+timestamp: 1647134089629516, page: 11, pagefault: 0
+timestamp: 1647134089629517, page: 10, pagefault: 1
+timestamp: 1647134089629518, page: 11, pagefault: 0
+timestamp: 1647134089629519, page: 14, pagefault: 1
+timestamp: 1647134089629520, page:  1, pagefault: 1
+timestamp: 1647134089629521, page:  2, pagefault: 1
+timestamp: 1647134089629522, page:  5, pagefault: 1
+timestamp: 1647134089629523, page:  2, pagefault: 0
+timestamp: 1647134089629524, page:  4, pagefault: 1
+timestamp: 1647134089629525, page: 14, pagefault: 0
+timestamp: 1647134089629526, page:  5, pagefault: 0
+timestamp: 1647134089629527, page:  3, pagefault: 1
+timestamp: 1647134089629528, page: 15, pagefault: 1
+timestamp: 1647134089629529, page:  8, pagefault: 1
+timestamp: 1647134089629530, page: 15, pagefault: 0
+timestamp: 1647134089629531, page: 12, pagefault: 1
+timestamp: 1647134089629532, page: 15, pagefault: 0
+timestamp: 1647134089629533, page:  0, pagefault: 1
+timestamp: 1647134089629534, page:  3, pagefault: 0
+timestamp: 1647134089629535, page:  0, pagefault: 0
+timestamp: 1647134089629536, page: 10, pagefault: 1
+timestamp: 1647134089629538, page: 15, pagefault: 0
+timestamp: 1647134089629538, page:  3, pagefault: 0
+timestamp: 1647134089629539, page:  2, pagefault: 0
+timestamp: 1647134089629540, page:  8, pagefault: 0
+timestamp: 1647134089629541, page:  2, pagefault: 0
+timestamp: 1647134089629542, page: 11, pagefault: 1
+timestamp: 1647134089629543, page:  1, pagefault: 1
+timestamp: 1647134089629545, page:  5, pagefault: 1
+timestamp: 1647134089629546, page:  1, pagefault: 0
+timestamp: 1647134089629547, page: 15, pagefault: 0
+timestamp: 1647134089629548, page:  8, pagefault: 0
+timestamp: 1647134089629549, page:  5, pagefault: 0
+timestamp: 1647134089629550, page:  7, pagefault: 1
+timestamp: 1647134089629551, page:  5, pagefault: 0
+timestamp: 1647134089629552, page:  7, pagefault: 0
+timestamp: 1647134089629553, page:  3, pagefault: 1
+timestamp: 1647134089629554, page:  4, pagefault: 1
+timestamp: 1647134089629555, page: 15, pagefault: 1
+timestamp: 1647134089629556, page: 15, pagefault: 0
+timestamp: 1647134089629557, page:  7, pagefault: 0
+timestamp: 1647134089629558, page:  6, pagefault: 1
+timestamp: 1647134089629559, page: 11, pagefault: 0
+timestamp: 1647134089629560, page:  8, pagefault: 1
+timestamp: 1647134089629561, page:  1, pagefault: 0
+timestamp: 1647134089629562, page:  9, pagefault: 1
+timestamp: 1647134089629563, page: 10, pagefault: 1
+timestamp: 1647134089629564, page:  1, pagefault: 0
+timestamp: 1647134089629565, page:  2, pagefault: 1
+timestamp: 1647134089629566, page:  9, pagefault: 0
+timestamp: 1647134089629567, page:  2, pagefault: 0
+timestamp: 1647134089629568, page:  4, pagefault: 0
+timestamp: 1647134089629580, page: 14, pagefault: 1
+timestamp: 1647134089629581, page:  0, pagefault: 1
+timestamp: 1647134089629583, page: 13, pagefault: 1
+timestamp: 1647134089629584, page:  6, pagefault: 1
+timestamp: 1647134089629585, page:  4, pagefault: 1
+timestamp: 1647134089629586, page: 11, pagefault: 1
+timestamp: 1647134089629631, page: 14, pagefault: 0
+timestamp: 1647134089629633, page:  2, pagefault: 0
+timestamp: 1647134089629634, page: 14, pagefault: 0
+timestamp: 1647134089629635, page: 12, pagefault: 1
+timestamp: 1647134089629636, page: 13, pagefault: 0
+timestamp: 1647134089629637, page:  1, pagefault: 1
+timestamp: 1647134089629638, page: 10, pagefault: 1
+timestamp: 1647134089629639, page: 11, pagefault: 0
+timestamp: 1647134089629640, page:  1, pagefault: 0
+timestamp: 1647134089629641, page: 10, pagefault: 0
+timestamp: 1647134089629642, page: 15, pagefault: 1
+timestamp: 1647134089629643, page:  5, pagefault: 1
+timestamp: 1647134089629644, page:  0, pagefault: 1
+timestamp: 1647134089629645, page:  1, pagefault: 0
+timestamp: 1647134089629646, page:  2, pagefault: 1
+timestamp: 1647134089629647, page:  2, pagefault: 0
+timestamp: 1647134089629648, page: 10, pagefault: 0
+timestamp: 1647134089629649, page: 13, pagefault: 1
+timestamp: 1647134089629650, page:  4, pagefault: 1
+timestamp: 1647134089629651, page:  7, pagefault: 1
+timestamp: 1647134089629652, page: 12, pagefault: 1
+timestamp: 1647134089629653, page: 12, pagefault: 0
+timestamp: 1647134089629654, page: 12, pagefault: 0
+timestamp: 1647134089629655, page: 12, pagefault: 0
+timestamp: 1647134089629656, page:  2, pagefault: 0
+timestamp: 1647134089629659, page:  6, pagefault: 1
+total pagefaults: 52

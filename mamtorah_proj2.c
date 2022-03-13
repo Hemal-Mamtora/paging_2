@@ -303,11 +303,16 @@ int choosePageFrameSize() {
     printf("Press 2 for 8-page frames\n");
     printf("Your choice: ");
     scanf("%d", &option);
-    if(option == 1)
+    if(option == 1){
+        printf("\noption chosen: %d\n", option);
         return 4;
-    else if (option == 2)
+    }
+        
+    else if (option == 2){
+          printf("\noption chosen: %d\n", option);
         return 8;
-
+    }
+    printf("\noption chosen: %d\n", option);
     printf("Please choose a valid option!\n");
     return -1;
 }
@@ -320,7 +325,7 @@ int main() {
   printf("Press 3 for Second Chance\n");
   printf("Your choice: ");
   scanf("%d", &option);
-
+  printf("\nOption chosen: %d\n", option);
   pageFrameSize = choosePageFrameSize();
 
 
