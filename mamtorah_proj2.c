@@ -220,18 +220,6 @@ int insertSecondChance(int page) {
     }
   }
 
-  if (outIndex != -1) {
-    for (int i = outIndex; i > 0; i --) {
-      memoryFrames[i] = memoryFrames[i-1];
-    }
-    memoryFrames[0] = (frame){page, 0};
-    return 1;
-  }
-
-  // if control reaches here, this means, there's page fault, and we need to
-  // check second chance bit too.
-
-
   while(1) {
     if(!memoryFrames[pointer].secondChanceBit){
       memoryFrames[pointer] = (frame){page, 0};
