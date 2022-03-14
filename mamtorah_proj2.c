@@ -200,6 +200,8 @@ void initializeSecondChance() {
   }
 }
 
+int pointer = 0;
+
 int insertSecondChance(int page) {
   for (int i = 0; i < pageFrameSize; i++) {
       if (memoryFrames[i].page == page) {
@@ -229,37 +231,16 @@ int insertSecondChance(int page) {
   // if control reaches here, this means, there's page fault, and we need to
   // check second chance bit too.
 
-  // but first lets move the last 4 exited pages
-  for (int i = pageFrameSize - 1; i > pageFrameSize; i--) {
-    memoryFrames[i] = memoryFrames[i-1];
-  }
 
-  for (int i = pageFrameSize - 1; i >= 0; i--) {
-    if (memoryFrames[i].secondChanceBit == 1) {
-      memoryFrames[i].secondChanceBit = 0; // 2nd chance exhausted
+  while(1) {
+    if(!memoryFrames[pointer].secondChanceBit){
+      memoryFrames[pointer] = (frame){page, 0};
+      pointer = (pointer + 1) % pageFrameSize;
+      return 1; // page fault occured
     }
-    else{
-      // currently at an index to be moved out.
-      memoryFrames[pageFrameSize] = memoryFrames[i]; // moved out
-      outIndex = i;
-      break;
-    }
+    memoryFrames[pointer].secondChanceBit = 0; // 2nd chance consumed
+    pointer = (pointer + 1) % pageFrameSize;
   }
-
-  if (outIndex == -1) {
-    // this means, all pageFrames got a second chance.
-    // hence, outIndex should be the first page in. (since FIFO) 
-    // first page in, would be at index pageFrameSize - 1
-    outIndex = pageFrameSize - 1;
-  }
-
-  for (int i = outIndex; i > 0; i--) {
-    memoryFrames[i] = memoryFrames[i-1];
-  }
-
-  // finally, we place the current page
-  memoryFrames[0] = (frame){page, 0};
-  return 1; // page fault had occured
 }
 
 void secondChance() {
